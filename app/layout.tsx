@@ -1,17 +1,24 @@
+import '@/styles/bootstrap.css';
 import "@/styles/globals.css";
+import '@/styles/home2.css';
+// import '@/styles/episode.css';
+// import '@/styles/home.css';
+import '@/styles/style.css';
+import '@/styles/others.css';
+import "@/styles/index.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-
+import { Logo } from "@/components/icons";
+import { TbChevronUp } from "react-icons/tb";
+import Footer from '@/components/Footer';
+import NextAuthProvider from '@/lib/NextAuthProvider';
+import Script from 'next/script';
 export const metadata: Metadata = {
-	title: {
-		default: siteConfig.name,
-		template: `%s - ${siteConfig.name}`,
-	},
+	title: "Anime Vite",
 	description: siteConfig.description,
 	themeColor: [
 		{ media: "(prefers-color-scheme: light)", color: "white" },
@@ -19,8 +26,8 @@ export const metadata: Metadata = {
 	],
 	icons: {
 		icon: "/favicon.ico",
-		shortcut: "/favicon-16x16.png",
-		apple: "/apple-touch-icon.png",
+		shortcut: "/favicon.ico",
+		apple: "/favicon.ico",
 	},
 };
 
@@ -33,30 +40,23 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head />
 			<body
+				
 				className={clsx(
-					"min-h-screen bg-background font-sans antialiased",
-					fontSans.variable
+					"min-h-screen bg-background antialiased",
 				)}
 			>
-				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col h-screen">
-						<Navbar />
-						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-							{children}
-						</main>
-						<footer className="w-full flex items-center justify-center py-3">
-							<Link
-								isExternal
-								className="flex items-center gap-1 text-current"
-								href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-								title="nextui.org homepage"
-							>
-								<span className="text-default-600">Powered by</span>
-								<p className="text-primary">NextUI</p>
-							</Link>
-						</footer>
-					</div>
-				</Providers>
+				<NextAuthProvider>
+					<Script src="https://kit.fontawesome.com/79101233a3.js" crossOrigin="anonymous"></Script>
+					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+						<div className="relative flex flex-col h-screen">
+							<Navbar />
+							<main >
+								{children}
+							</main>
+							<Footer />
+						</div>
+					</Providers>
+				</NextAuthProvider>
 			</body>
 		</html>
 	);
