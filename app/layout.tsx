@@ -29,6 +29,20 @@ export const metadata: Metadata = {
 		shortcut: "/favicon.ico",
 		apple: "/favicon.ico",
 	},
+	openGraph: {
+		title: "AnimeVite",
+		description: siteConfig.description,
+		url: siteConfig.siteUrl,
+		images: [
+			{
+				url: "/animevite.png",
+				width: 512,
+				height: 512,
+				alt: "AnimeVite Logo",
+			},
+		],
+
+	},
 };
 
 export default function RootLayout({

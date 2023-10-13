@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
 	name: "AnimeVite",
-	description: "Make beautiful websites regardless of your design experience.",
+	description: "Welcome to AnimeVite - your ultimate destination for all things anime! Find the latest news, reviews, and recommendations for your favorite shows, as well as new discoveries. Join our passionate community of anime fans and explore the fascinating world of Japanese animation like never before. Start your journey on AnimeVite today!",
 	siteUrl: "https://animevite.vercel.app",
 	navItems: [
 		{
