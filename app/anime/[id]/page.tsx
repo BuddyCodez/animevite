@@ -59,9 +59,7 @@ export async function generateMetadata(
         },
     }
 }
-export const metadata: Metadata = {
-    title: "Anime Info",
-};
+
 const page = ({ params, searchParams }: Props) => {
     return (
       <AnimeDetails id={params.id} searchParams={searchParams} />
