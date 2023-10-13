@@ -6,7 +6,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { MdWatchLater } from 'react-icons/md';
 import { GrStatusGoodSmall } from 'react-icons/gr';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next-nprogress-bar';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -17,9 +17,9 @@ import { siteConfig } from "@/config/site";
 import parseText from "@/utils/parseText";
 import parse from 'html-react-parser';
 import { Skeleton } from "@mui/material";
-import { usePRouter } from "@/lib/usePRouter";
+
 const Hero = () => {
-    const router = usePRouter();
+    const router = useRouter();
     const shortDateFormatter = new Intl.DateTimeFormat('en-US', {
         year: 'numeric',
         month: 'numeric',

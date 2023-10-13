@@ -25,14 +25,13 @@ import {
 } from "@/components/icons";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Logo } from "@/components/icons";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next-nprogress-bar';
 import NextTopLoader from 'nextjs-toploader';
-import { usePRouter } from "@/lib/usePRouter";
 
 export const Navbar = () => {
 	const { data: session } = useSession();
 
-	const router = usePRouter();
+	const router = useRouter();
 	const searchInput = (
 		<Input
 			aria-label="Search Anime..."

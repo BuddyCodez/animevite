@@ -3,11 +3,11 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import * as NProgress from 'nprogress';
 export const usePRouter = () => {
+    const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const router = useRouter();
-
     const { push } = router;
+
 
     router.push = (href, options) => {
         NProgress.start();

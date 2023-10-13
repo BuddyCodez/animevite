@@ -13,11 +13,10 @@ import { Input } from '@nextui-org/input';
 import parseText, { parseAllText, textType } from '@/utils/parseText';
 import parse from 'html-react-parser';
 import { BsPlayFill } from 'react-icons/bs';
-import { useRouter } from 'next/navigation';
 import useFetcher from '@/utils/fetcher';
 
 import StarRating from '@/components/StartRating';
-import { usePRouter } from '@/lib/usePRouter';
+import { useRouter } from 'next-nprogress-bar';
 
 type Props = {
     params: { id: string }
@@ -65,7 +64,7 @@ interface Episode {
 
 const AnimeDetails = ({ id, searchParams }: { id: string; searchParams: { [key: string]: string | string[] | undefined } }) => {
     const animeId: any = id;
-    const router = usePRouter();
+    const router = useRouter();
     const { data: anime, isLoading } = useFetcher(siteConfig.apiUrl + "/meta/anilist/info/" + animeId + "?provider=zoro");
     const [episodes, setEpisodes] = useState<Episode[] | null>(null);
     const ref = useRef<HTMLDivElement>(null);

@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { Metadata } from 'next'
 import { siteConfig } from '@/config/site'
 
-const page = () => {
+const Page = () => {
     const searchParams = useSearchParams();
 
     const searchQuery = searchParams.get('keyword');
@@ -17,4 +17,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
