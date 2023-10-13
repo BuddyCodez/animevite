@@ -15,44 +15,7 @@ const Search = ({ keyword }: { keyword: string }) => {
     if (error || !keyword || keyword === "") return <div>
         <SearchError />
     </div>
-    useEffect(() => {
-        if (!isLoading) {
-            setSearchResults(data);
-        }
-        return () => {
 
-        }
-    }, [isLoading])
-    useEffect(() => {
-        const handleScroll = async () => {
-            // Replace 'myDiv' with the ID or class of the element you want to check
-            const myDiv = document.getElementById('searchDiv');
-            if (!myDiv) return;
-            const rect = myDiv.getBoundingClientRect();
-            const isScrolledToDiv = rect.bottom <= window.innerHeight;
-            if (isScrolledToDiv) {
-                let page = searchResults?.currentPage || 0;
-                let hasNextPage = searchResults?.hasNextPage || false;
-                if (!hasNextPage || page == 0) return;
-                console.log("Fetching New Page");
-                const data = await fetch(siteConfig.apiUrl + "/meta/anilist/" + keyword + "page?=" + (page + 1)).then(res => res.json());
-                if (searchResults?.results.includes(data.results)) return;
-                let newData = {
-                    hasNextPage: data.hasNextPage,
-                    results: [...searchResults?.results || [], ...data.results],
-                    currentPage: data.currentPage
-                }
-                setSearchResults(newData)
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            // Clean up the event listener when the component unmounts
-            window.removeEventListener("scroll", handleScroll);
-        }
-    }, []);
     return (
         <article className='py-12 mt-3 px-4'>
             <div className="flex flex-col justify-center items-center">
@@ -62,7 +25,7 @@ const Search = ({ keyword }: { keyword: string }) => {
                 </div>}
             </div>
             <div className="flex justify-center items-center flex-wrap p-3" id='searchDiv'>
-                {!isLoading && searchResults?.results?.map((item: any, index: number) => {
+                {!isLoading && data?.results?.map((item: any, index: number) => {
                     return <Link href={'/anime/' + item?.id} className="col-lg-4 col-md-6 col-sm-6" key={item?.id}>
                         <div className="product__item">
                             <div className="product__item__pic set-bg" style={{

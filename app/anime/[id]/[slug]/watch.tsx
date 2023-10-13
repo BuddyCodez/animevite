@@ -54,19 +54,26 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
     const [episodeData, setEpData] = useState<EPData | null>(null);
     const [alignment, setAlignment] = useState('sub');
     const [modes, setModes] = useState(['skip', 'auto']) as any;
-    const vPlayer = useRef<MediaPlayerInstance>(null);
     const [open, setOpen] = useState(false);
+    const [episodes, setEpisode] = useState<Array<Object> | null | undefined>(undefined);
+    const vPlayer = useRef<MediaPlayerInstance>(null);
     const { data: anime, isLoading: animeLoading } = useFetcher(siteConfig.apiUrl + "/meta/anilist/info/" + animeId + "?provider=zoro");
     let zoroEpId = anime?.episodes[parseInt(epNumber) - 1].id;
     // console.log(epId, anime?.episodes)
     const { data: epData, isLoading: epLoading } = useFetcher(siteConfig.apiUrl + `/anime/zoro/watch?episodeId=${zoroEpId}&server=vidcloud`) as { data: EPData, isLoading: boolean };
-    let isLoading = animeLoading || epLoading;
-    if (!isLoading && (!anime || !epData)) {
-        return <Error />
-    }
-    const [episodes, setEpisode] = useState<Array<Object> | null | undefined>(undefined);
     // console.log(epData);
 
+    const handleClick = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        
+        setOpen(false);
+    };
     useEffect(() => {
         let epLen = anime?.episodes?.length;
         if (epLen > 0) {
@@ -76,18 +83,10 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
             setEpData(epData);
         }
     }, [anime, epData]);
-    const handleClick = () => {
-        setOpen(true);
-    };
-
-    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
-
+    let isLoading = animeLoading || epLoading;
+    if (!isLoading && (!anime || !epData)) {
+        return <Error />
+    }
     return (
         <>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
