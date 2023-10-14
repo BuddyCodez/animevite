@@ -23,6 +23,7 @@ import Link from 'next/link';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Error from "@/components/Error";
+import { useRouter } from 'next-nprogress-bar';
 interface Source {
     url: string;
     isM3U8: boolean;
@@ -57,6 +58,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
     const [open, setOpen] = useState(false);
     const [episodes, setEpisode] = useState<Array<Object> | null | undefined>(undefined);
     const vPlayer = useRef<MediaPlayerInstance>(null);
+    const router = useRouter();
     const { data: anime, isLoading: animeLoading } = useFetcher(siteConfig.apiUrl + "/meta/anilist/info/" + animeId + "?provider=zoro");
     let zoroEpId = anime?.episodes[parseInt(epNumber) - 1].id;
     // console.log(epId, anime?.episodes)
@@ -74,6 +76,17 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
 
         setOpen(false);
     };
+    const goNext = () => {
+        console.log("goNext");
+        if (!modes?.includes("auto")) return;
+        let epLen = anime?.episodes?.length;
+        let currentEp = parseInt(epNumber);
+        if (currentEp == epLen) return;
+        const nextEp = currentEp + 1;
+        const nextEpId = anime?.episodes[nextEp - 1].id;
+        if (!nextEpId) return;
+        router.push(`/anime/${animeId}/${nextEp}`);
+    } 
     useEffect(() => {
         let epLen = anime?.episodes?.length;
         if (epLen > 0) {
@@ -82,7 +95,14 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
         if (epData?.sources?.length > 0 && !episodeData?.sources) {
             setEpData(epData);
         }
+
     }, [anime, epData]);
+    useEffect(() => {
+        if (vPlayer?.current) {
+            vPlayer?.current.addEventListener('end', (event) => goNext());
+            vPlayer?.current?.addEventListener('ended', (event) => goNext());
+        }
+    })
     let isLoading = animeLoading || epLoading;
     if (!isLoading && (!anime || !epData)) {
         return <Error />
