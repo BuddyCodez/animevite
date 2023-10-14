@@ -1,5 +1,10 @@
 "use client";
-
+import '@/styles/bootstrap.css';
+import "@/styles/globals.css";
+import '@/styles/home2.css';
+import '@/styles/style.css';
+import '@/styles/others.css';
+import "@/styles/index.css";
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";

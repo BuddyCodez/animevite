@@ -1,11 +1,3 @@
-import '@/styles/bootstrap.css';
-import "@/styles/globals.css";
-import '@/styles/home2.css';
-// import '@/styles/episode.css';
-// import '@/styles/home.css';
-import '@/styles/style.css';
-import '@/styles/others.css';
-import "@/styles/index.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Providers } from "./providers";
