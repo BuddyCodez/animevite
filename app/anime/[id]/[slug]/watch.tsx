@@ -66,12 +66,12 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
     const handleClick = () => {
         setOpen(true);
     };
-    
+
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
-        
+
         setOpen(false);
     };
     useEffect(() => {
@@ -90,7 +90,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
     return (
         <>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
-            message="Dub is not available for this episode."
+                message="Dub is not available for this episode."
             />
             <section className='anime-details spad' style={{
                 height: "100%"
@@ -122,7 +122,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                         "https://cors.uditvegad.repl.co/cors?url=" + episodeData.sources.find(source => source.quality === "auto")?.url || undefined
                                     }
                                         // poster={"https://cors.uditvegad.repl.co/cors?url=" + anime?.cover}
-                                        crossorigin
+                                        crossorigin="anonymous"
                                         // aspectRatio='16:9'
                                         ref={vPlayer}
                                     >
@@ -139,7 +139,14 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                                 />
                                             })}
                                         </MediaProvider>
-                                        <DefaultVideoLayout icons={defaultLayoutIcons} />
+                                        <DefaultVideoLayout icons={defaultLayoutIcons}
+                                            thumbnails={
+                                                episodeData?.subtitles?.find((s: subtitleType) => s.lang == "Thumbnails")?.url
+                                                    ? "https://cors.uditvegad.repl.co/cors?url=" + episodeData?.subtitles?.find((s: subtitleType) => s.lang == "Thumbnails")?.url
+                                                    : undefined
+
+                                            }
+                                        />
                                     </MediaPlayer>
                                 }
 
@@ -229,26 +236,26 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                 </>}
                             </div>
                             <ScrollShadow className="wrapper h-[93%] overflow-y-scroll flex flex-col p-1 scrollbar-hide">
-                                    {animeLoading && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item: number, index: number) => {
-                                        return <Skeleton className="border-gray-400 flex flex-row mb-2" key={index} variant='rounded'
-                                            height="70px" width="100%" animation="wave" sx={{ bgcolor: 'grey.800' }}
-                                        />
-                                    })}
-                                    {!animeLoading && episodes?.map((ep: any, index: number) => (
-                                        <Link href={`/anime/${anime?.id}/${ep?.number}`} className="border-gray-400 flex flex-row mb-2" key={ep?.id}>
-                                            <div className={`select-none cursor-pointer ${(index + 1).toString() == epNumber ? "bg-gray-900" : "bg-slate-800"} rounded-md flex flex-1 items-center p-3  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg`}>
-                                                <div className="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">
-                                                    <Image src={ep?.image} alt="Episode Image" className="w-10 h-10 object-cover rounded-md" />
-                                                </div>
-                                                <div className="flex-1 pl-1">
-                                                    <div className="font-medium">{ep?.title}</div>
-                                                    <div className="text-gray-600 text-sm">{ep?.number} Episode</div>
-                                                </div>
-
+                                {animeLoading && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item: number, index: number) => {
+                                    return <Skeleton className="border-gray-400 flex flex-row mb-2" key={index} variant='rounded'
+                                        height="70px" width="100%" animation="wave" sx={{ bgcolor: 'grey.800' }}
+                                    />
+                                })}
+                                {!animeLoading && episodes?.map((ep: any, index: number) => (
+                                    <Link href={`/anime/${anime?.id}/${ep?.number}`} className="border-gray-400 flex flex-row mb-2" key={ep?.id}>
+                                        <div className={`select-none cursor-pointer ${(index + 1).toString() == epNumber ? "bg-gray-900" : "bg-slate-800"} rounded-md flex flex-1 items-center p-3  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg`}>
+                                            <div className="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">
+                                                <Image src={ep?.image} alt="Episode Image" className="w-10 h-10 object-cover rounded-md" />
                                             </div>
-                                        </Link>
-                                    ))}
-                              
+                                            <div className="flex-1 pl-1">
+                                                <div className="font-medium">{ep?.title}</div>
+                                                <div className="text-gray-600 text-sm">{ep?.number} Episode</div>
+                                            </div>
+
+                                        </div>
+                                    </Link>
+                                ))}
+
                             </ScrollShadow>
                         </div>
                         <div className="col-span-1 rounded-lg h-[800px] shadow-md p-4" style={bgStyle}>

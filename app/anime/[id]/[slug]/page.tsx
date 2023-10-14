@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const page = ({ params }: { params: { slug: string; id: string; } }) => {
     const animeId = params.id;
     const episode = params.slug;
-    console.log(animeId, episode)
+    // console.log(animeId, episode)
     return (
         <>
             <Watch animeId={animeId} epNumber={episode} />

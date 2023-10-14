@@ -4,10 +4,9 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import { Logo } from "@/components/icons";
-import { TbChevronUp } from "react-icons/tb";
 import Footer from '@/components/Footer';
 import NextAuthProvider from '@/lib/NextAuthProvider';
+import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 export const metadata: Metadata = {
 	title: "Anime Vite",
@@ -53,6 +52,7 @@ export default function RootLayout({
 				)}
 			>
 				<NextAuthProvider>
+					<Analytics />
 					<Script src="https://kit.fontawesome.com/79101233a3.js" crossOrigin="anonymous"></Script>
 					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 						<div className="relative flex flex-col h-screen">
