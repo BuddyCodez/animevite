@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 		apple: "/favicon.ico",
 	},
 	openGraph: {
-		title: "AnimeVite",
+		title: "AnimeAstra",
 		description: siteConfig.description,
 		url: siteConfig.siteUrl,
 		images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 				url: "/animevite.png",
 				width: 512,
 				height: 512,
-				alt: "AnimeVite Logo",
+				alt: "AnimeAstra Logo",
 			},
 		],
 
