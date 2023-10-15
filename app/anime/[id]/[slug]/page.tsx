@@ -15,6 +15,7 @@ type character = {
 
 export const metadata: Metadata = {
     title: "Watch Anime",
+    referrer: "no-referrer"
 };
 const page = ({ params }: { params: { slug: string; id: string; } }) => {
     const animeId = params.id;

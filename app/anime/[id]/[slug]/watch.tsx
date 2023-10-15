@@ -142,7 +142,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                         siteConfig.corsUrl + episodeData.sources.find(source => source.quality === "auto")?.url || undefined
                                     }
                                         // poster={"https://cors.uditvegad.repl.co/cors?url=" + anime?.cover}
-                                        crossorigin="anonymous"
+                                        crossorigin={"anonymous"}
                                         // aspectRatio='16:9'
                                         ref={vPlayer}
                                     >
