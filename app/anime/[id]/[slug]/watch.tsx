@@ -62,7 +62,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
     const { data: anime, isLoading: animeLoading } = useFetcher(siteConfig.apiUrl + "/meta/anilist/info/" + animeId + "?provider=zoro");
     let zoroEpId = anime?.episodes[parseInt(epNumber) - 1].id;
     // console.log(epId, anime?.episodes)
-    const { data: epData, isLoading: epLoading } = useFetcher(siteConfig.apiUrl + `/anime/zoro/watch?episodeId=${zoroEpId}&server=vidcloud`) as { data: EPData, isLoading: boolean };
+    const { data: epData, isLoading: epLoading } = useFetcher(siteConfig.apiUrl + `/anime/zoro/watch?episodeId=${zoroEpId}&server=streamsb`) as { data: EPData, isLoading: boolean };
     // console.log(epData);
 
     const handleClick = () => {
