@@ -20,6 +20,9 @@ export const metadata: Metadata = {
 		shortcut: "/favicon.ico",
 		apple: "/favicon.ico",
 	},
+	verification: {
+		google: "d8Q9bSGyoBL8RSathwiLAJd3qbQhUcl_au7udJd5XZo",
+	},
 	openGraph: {
 		title: "AnimeAstra",
 		description: siteConfig.description,
@@ -44,9 +47,7 @@ export default function RootLayout({
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head>
-				<meta name="google-site-verification" content="d8Q9bSGyoBL8RSathwiLAJd3qbQhUcl_au7udJd5XZo" />
-			</head>
+			<head />
 			<body
 				
 				className={clsx(
