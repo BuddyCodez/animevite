@@ -9,7 +9,7 @@ import NextAuthProvider from '@/lib/NextAuthProvider';
 import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 export const metadata: Metadata = {
-	title: "Anime Vite",
+	title: "Anime Astra | Watch Anime Online for Free in HD Quality",
 	description: siteConfig.description,
 	themeColor: [
 		{ media: "(prefers-color-scheme: light)", color: "white" },
