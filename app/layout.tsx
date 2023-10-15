@@ -44,7 +44,9 @@ export default function RootLayout({
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head />
+			<head>
+				<meta name="google-site-verification" content="d8Q9bSGyoBL8RSathwiLAJd3qbQhUcl_au7udJd5XZo" />
+			</head>
 			<body
 				
 				className={clsx(
