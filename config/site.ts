@@ -56,6 +56,7 @@ export const siteConfig = {
 		sponsor: "https://www.patreon.com/UditVegad"
 	},
 	apiUrl: "https://cosumetinstance.vercel.app",
+	corsUrl: "",
 	geners: [
 		"Action",
 		"Adventure",

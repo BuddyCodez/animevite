@@ -139,7 +139,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                 {(!isLoading && episodeData?.sources?.find(source => source?.quality === "auto")?.url) &&
 
                                     <MediaPlayer title={parseText(anime?.title)} src={
-                                        "https://cors.uditvegad.repl.co/cors?url=" + episodeData.sources.find(source => source.quality === "auto")?.url || undefined
+                                        siteConfig.corsUrl + episodeData.sources.find(source => source.quality === "auto")?.url || undefined
                                     }
                                         // poster={"https://cors.uditvegad.repl.co/cors?url=" + anime?.cover}
                                         crossorigin="anonymous"
@@ -152,7 +152,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                                 return <Track
                                                     kind='subtitles'
                                                     key={String(index)}
-                                                    src={"https://cors.uditvegad.repl.co/cors?url=" + s.url}
+                                                    src={siteConfig.corsUrl + s.url}
                                                     label={s.lang}
                                                     lang={s.lang}
                                                     default={s.lang == "English" ? true : false}
@@ -162,7 +162,7 @@ const Watch = ({ animeId, epNumber }: { animeId: string; epNumber: string }) => 
                                         <DefaultVideoLayout icons={defaultLayoutIcons}
                                             thumbnails={
                                                 episodeData?.subtitles?.find((s: subtitleType) => s.lang == "Thumbnails")?.url
-                                                    ? "https://cors.uditvegad.repl.co/cors?url=" + episodeData?.subtitles?.find((s: subtitleType) => s.lang == "Thumbnails")?.url
+                                                    ? siteConfig.corsUrl + episodeData?.subtitles?.find((s: subtitleType) => s.lang == "Thumbnails")?.url
                                                     : undefined
 
                                             }
