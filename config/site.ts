@@ -56,7 +56,7 @@ export const siteConfig = {
 		sponsor: "https://www.patreon.com/UditVegad"
 	},
 	apiUrl: "https://cosumetinstance.vercel.app",
-	corsUrl: "https://cors.uditvegad.repl.co/cors?url=",
+	corsUrl: "https://m3u8proxy-cors.buddycodez.repl.co/cors?url=",
 	geners: [
 		"Action",
 		"Adventure",
