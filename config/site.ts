@@ -55,7 +55,7 @@ export const siteConfig = {
 		discord: "https://discord.gg/9Ab7pzwxjh",
 		sponsor: "https://www.patreon.com/UditVegad"
 	},
-	apiUrl: "https://astraapi.vercel.app",
+	apiUrl: "https://animeapiastra.vercel.app",
 	corsUrl: "https://8e740439-2e97-43a2-b917-306e366c3f31-00-3ui6h19hbh1f8.global.replit.dev/cors?url=",
 	geners: [
 		"Action",
